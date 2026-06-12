@@ -4,8 +4,38 @@ const { sendToDevice, sendToDevices } = require('../services/notificationService
 const router = express.Router();
 
 /**
- * POST /api/notifications/send
- * Body: { token, title, body, data? }
+ * @openapi
+ * /api/notifications/send:
+ *   post:
+ *     tags:
+ *       - Notifications
+ *     summary: Send a push notification to one device
+ *     description: Sends an FCM notification to a single device using its FCM token.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SendNotificationRequest'
+ *     responses:
+ *       200:
+ *         description: Notification sent successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SendNotificationResponse'
+ *       400:
+ *         description: Invalid request body
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Failed to send notification
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post('/send', async (req, res) => {
   try {
@@ -30,8 +60,38 @@ router.post('/send', async (req, res) => {
 });
 
 /**
- * POST /api/notifications/send-multicast
- * Body: { tokens: string[], title, body, data? }
+ * @openapi
+ * /api/notifications/send-multicast:
+ *   post:
+ *     tags:
+ *       - Notifications
+ *     summary: Send a push notification to multiple devices
+ *     description: Sends the same FCM notification to multiple device tokens at once.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SendMulticastRequest'
+ *     responses:
+ *       200:
+ *         description: Multicast send completed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SendMulticastResponse'
+ *       400:
+ *         description: Invalid request body
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Failed to send notifications
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post('/send-multicast', async (req, res) => {
   try {

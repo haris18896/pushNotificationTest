@@ -15,7 +15,13 @@ npm install
 npm run dev
 ```
 
-4. Send a test notification (replace `YOUR_FCM_TOKEN` with the token from your mobile app):
+4. Open **Swagger UI** in your browser to explore and test the API interactively:
+
+   ```
+   http://localhost:3000/api-docs
+   ```
+
+5. Or send a test notification via curl (replace `YOUR_FCM_TOKEN` with the token from your mobile app):
 
 ```bash
 curl -X POST http://localhost:3000/api/notifications/send \
@@ -69,11 +75,22 @@ The JSON contains fields like:
 
 **Important:** Never commit this file to git. It grants server-side access to your Firebase project.
 
+## API documentation (Swagger)
+
+With the server running, open:
+
+- **Swagger UI:** [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+- **OpenAPI JSON:** [http://localhost:3000/api-docs.json](http://localhost:3000/api-docs.json)
+
+Use **Try it out** on any endpoint, fill in the request body, and click **Execute** to send a real request.
+
 ## API endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/health` | Health check |
+| GET | `/api-docs` | Swagger UI |
+| GET | `/api-docs.json` | OpenAPI specification |
 | POST | `/api/notifications/send` | Send to one device token |
 | POST | `/api/notifications/send-multicast` | Send to multiple device tokens |
 
