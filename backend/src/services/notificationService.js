@@ -1,8 +1,6 @@
-const { getMessaging } = require('../config/firebase');
+const { getMessaging } = require("../config/firebase");
 
-/**
- * Send a push notification to a single device token.
- */
+// Send a push notification to a single device token.
 async function sendToDevice({ token, title, body, data = {} }) {
   const messaging = getMessaging();
 
@@ -14,16 +12,16 @@ async function sendToDevice({ token, title, body, data = {} }) {
     },
     data: stringifyData(data),
     android: {
-      priority: 'high',
+      priority: "high",
       notification: {
-        channelId: 'default',
-        sound: 'default',
+        channelId: "default",
+        sound: "default",
       },
     },
     apns: {
       payload: {
         aps: {
-          sound: 'default',
+          sound: "default",
         },
       },
     },
@@ -33,9 +31,7 @@ async function sendToDevice({ token, title, body, data = {} }) {
   return { messageId };
 }
 
-/**
- * Send a push notification to multiple device tokens.
- */
+// Send a push notification to multiple device tokens.
 async function sendToDevices({ tokens, title, body, data = {} }) {
   const messaging = getMessaging();
 
@@ -47,16 +43,16 @@ async function sendToDevices({ tokens, title, body, data = {} }) {
     },
     data: stringifyData(data),
     android: {
-      priority: 'high',
+      priority: "high",
       notification: {
-        channelId: 'default',
-        sound: 'default',
+        channelId: "default",
+        sound: "default",
       },
     },
     apns: {
       payload: {
         aps: {
-          sound: 'default',
+          sound: "default",
         },
       },
     },
@@ -76,12 +72,10 @@ async function sendToDevices({ tokens, title, body, data = {} }) {
   };
 }
 
-/**
- * FCM data payloads must be string key-value pairs.
- */
+// FCM data payloads must be string key-value pairs.
 function stringifyData(data) {
   return Object.fromEntries(
-    Object.entries(data).map(([key, value]) => [key, String(value)])
+    Object.entries(data).map(([key, value]) => [key, String(value)]),
   );
 }
 
