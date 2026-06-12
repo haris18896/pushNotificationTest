@@ -1,0 +1,9 @@
+{
+  "watch": ["src", ".env"],
+  "ext": "js,json,env",
+  "ignore": ["node_modules/**", "config/firebase-service-account.json"],
+  "exec": "node src/index.js",
+  "watchman": true,
+  "delay": 300,
+  "verbose": false
+}
