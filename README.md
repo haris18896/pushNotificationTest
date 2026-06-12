@@ -12,8 +12,20 @@ Node.js server for sending Firebase Cloud Messaging (FCM) push notifications to 
 cd backend
 cp .env.example .env
 npm install
-npm run dev
+npm run dev   # uses nodemon + watchman for instant reloads
 ```
+
+### Dev server (nodemon + watchman)
+
+`npm run dev` uses [nodemon](https://nodemon.io/) with **watchman** enabled for fast file watching on macOS.
+
+Install watchman once if you don't have it:
+
+```bash
+brew install watchman
+```
+
+The server restarts automatically when you change files in `src/` or `.env`.
 
 4. Open **Swagger UI** in your browser to explore and test the API interactively:
 
